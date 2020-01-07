@@ -20,56 +20,57 @@ type Props = React.ElementConfig<typeof Surface> & {|
    * - `contained` - button with a background color and elevation shadow (high emphasis)
    */
   mode?: 'text' | 'outlined' | 'contained',
-  /**
-   * Whether the color is a dark color. A dark button will render light text and vice-versa. Only applicable for `contained` mode.
-   */
-  dark?: boolean,
-  /**
-   * Use a compact look, useful for `text` buttons in a row.
-   */
-  compact?: boolean,
-  /**
-   * Custom text color for flat button, or background color for contained button.
-   */
-  color?: string,
-  /**
-   * Whether to show a loading indicator.
-   */
-  loading?: boolean,
-  /**
-   * Icon to display for the `Button`.
-   */
-  icon?: IconSource,
-  /**
-   * Whether the button is disabled. A disabled button is greyed out and `onPress` is not called on touch.
-   */
-  disabled?: boolean,
-  /**
-   * Label text of the button.
-   */
-  children: React.Node,
-  /**
-   * Make the label text uppercased. Note that this won't work if you pass React elements as children.
-   */
-  uppercase: boolean,
-  /**
-   * Accessibility label for the button. This is read by the screen reader when the user taps the button.
-   */
-  accessibilityLabel?: string,
-  /**
-   * Function to execute on press.
-   */
-  onPress?: () => mixed,
-  /**
-   * Style of button's inner content.
-   * Use this prop to apply custom height and width.
-   */
-  contentStyle?: any,
-  style?: any,
-  /**
-   * @optional
-   */
-  theme: Theme,
+    /**
+     * Whether the color is a dark color. A dark button will render light text and vice-versa. Only applicable for `contained` mode.
+     */
+    dark ?: boolean,
+    /**
+     * Use a compact look, useful for `text` buttons in a row.
+     */
+    compact ?: boolean,
+    /**
+     * Custom text color for flat button, or background color for contained button.
+     */
+    color ?: string,
+    /**
+     * Whether to show a loading indicator.
+     */
+    loading ?: boolean,
+    /**
+     * Icon to display for the `Button`.
+     */
+    icon ?: IconSource,
+    /**
+     * Whether the button is disabled. A disabled button is greyed out and `onPress` is not called on touch.
+     */
+    disabled ?: boolean,
+    /**
+     * Label text of the button.
+     */
+    children: React.Node,
+      /**
+       * Make the label text uppercased. Note that this won't work if you pass React elements as children.
+       */
+      uppercase: boolean,
+        /**
+         * Accessibility label for the button. This is read by the screen reader when the user taps the button.
+         */
+        accessibilityLabel ?: string,
+        /**
+         * Function to execute on press.
+         */
+        onPress ?: () => mixed,
+        /**
+         * Style of button's inner content.
+         * Use this prop to apply custom height and width.
+         */
+        contentStyle ?: any,
+        numberOfLines ?: number,
+        style ?: any,
+        /**
+         * @optional
+         */
+        theme: Theme,
 |};
 
 type State = {
@@ -152,6 +153,7 @@ class Button extends React.Component<Props, State> {
       style,
       theme,
       contentStyle,
+      numberOfLines,
       ...rest
     } = this.props;
     const { colors, roundness } = theme;
@@ -263,7 +265,7 @@ class Button extends React.Component<Props, State> {
               />
             ) : null}
             <Text
-              numberOfLines={1}
+              numberOfLines={numberOfLines || 1}
               style={[
                 styles.label,
                 compact && styles.compactLabel,
